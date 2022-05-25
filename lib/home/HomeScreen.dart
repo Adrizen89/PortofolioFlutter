@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portofolio_onflutter/about/AboutScreen.dart';
 import 'package:portofolio_onflutter/widgets/appbar/naviBar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -41,7 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  print('Hi there');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AboutScreen()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.zero,
@@ -53,13 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           colors: [Colors.red, Colors.yellow]),
                       borderRadius: BorderRadius.circular(10)),
                   child: Container(
-                    width: w*0.2,
-                    height: w*0.03,
+                    width: w * 0.2,
+                    height: w * 0.03,
                     alignment: Alignment.center,
                     child: const Text(
                       'READ',
                       style: const TextStyle(
-                          fontSize: 20,),
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ),
