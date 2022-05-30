@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 
 navBar() {
-  return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text('About'),
-        Text('Works'),
-        Text('Socials Network')
-      ],
-    );
+  return AppBar(
+    leading: Text('Portfolio'),
+    actions: [
+      Text('Projects'),
+      Text('About me')
+    ],
+  );
 }
