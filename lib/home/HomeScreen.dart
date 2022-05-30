@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portofolio_onflutter/about/AboutScreen.dart';
 import 'package:portofolio_onflutter/widgets/appbar/naviBar.dart';
+import 'package:portofolio_onflutter/widgets/card.dart';
+import 'package:portofolio_onflutter/widgets/homeText.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -15,66 +18,59 @@ class _HomeScreenState extends State<HomeScreen> {
     var w = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
     return Scaffold(
+        appBar: navBar(context),
         body: Row(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-          width: w * 0.5,
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'HELLO,',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: w * 0.03,
-              ),
-              Text('I am a Developper of Flutter !',
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey)),
-              SizedBox(
-                height: w * 0.03,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AboutScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                child: Ink(
-                  decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                          colors: [Colors.red, Colors.yellow]),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    width: w * 0.2,
-                    height: w * 0.03,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      'READ',
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+                width: w * 0.35,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: w * 0.06, horizontal: w * 0.04),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [titleHome(context), contactHome(context)],
                   ),
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(width: w * 0.5, height: h * 1, color: Colors.yellow)
-      ],
-    ));
+                )),
+            Container(
+                width: w * 0.35,
+                child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: w * 0.33,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 0.9,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                      autoPlayCurve: Curves.decelerate,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                    items: [1, 2, 3, 4].map((i) {
+                      return Builder(builder: (BuildContext context) {
+                        return card(context);
+                      });
+                    }).toList())),
+            Container(
+              width: w * 0.30,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: w*0.04, vertical: w*0.04),
+                    child: projectDescription(context),),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: w*0.01, horizontal: w*0.04),
+                    child: summaryProjects(context),)
+                  ],
+              ),
+            )
+          ],
+        ));
   }
 }
