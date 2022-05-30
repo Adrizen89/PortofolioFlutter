@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portofolio_onflutter/home/HomeScreen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,14 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Portfolio',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: GoogleFonts.poppinsTextTheme(
+            Theme.of(context).textTheme,
+          )
       ),
       home: HomeScreen(),
     );
