@@ -5,6 +5,7 @@ navBar(context) {
   var h = MediaQuery.of(context).size.height;
   return AppBar(
     elevation: 0,
+    
     backgroundColor: Colors.transparent,
     title: Row(
       children: [
